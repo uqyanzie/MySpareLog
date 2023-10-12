@@ -15,19 +15,12 @@
         
         <!-- Information Ends Here -->
         <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner w-50 mx-auto" style="max-height: 80vh">
-                <div class="carousel-item active d-flex">
-                    <img src="{{asset('storage/inventories/'.$inventory->foto)}}" class="d-block w-100" alt="...">
-                </div>
-                <!-- <div class="carousel-item active d-flex">
-                    <img src="{{asset('storage/inventories/Tangki bbm 1000 L.jpg')}}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset('storage/inventories/Tangki bbm 1000 L.jpg')}}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset('storage/inventories/Tangki bbm 1000 L.jpg')}}" class="d-block w-100" alt="...">
-                </div> -->
+            <div class="carousel-inner">
+                @foreach ($inventoryImages as $image)
+                    <div class="carousel-item active">
+                        <img src="{{asset('storage/inventories/'.$image->filename)}}" class="d-block w-100" alt="...">
+                    </div>
+                @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon bg-black" aria-hidden="true"></span>

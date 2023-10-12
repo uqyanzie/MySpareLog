@@ -53,14 +53,19 @@
             <h2 style="font-weight: bold">Newest</h2>
         @endif
         
-        <div class="row row-cols-xl-4 row-cols-md-2 row-cols-sm-1 pt-3">
+        <div class="row row-cols-xl-4 row-cols-md-2 row-cols-sm-1 pt-3 mb-4 g-3">
             @foreach ($inventories as $item)
                 <div class="col">
-                    <a href="/inventory/{{$item->id}}">
-                    <div class="card my-2 rounded-0" style="background-color:#F4F5F7">
+                    <a href="/inventory/{{$item->id}}" style="height:100%">
+                    <div class="card my-2 rounded-0" style="background-color:#F4F5F7; height:100%">
                         <img src="{{ asset('storage/inventories/' .$item->foto)}}" width="285px" height="301px" class="card-img-top rounded-0" alt="product-image">
                         <div class="card-body">
-                            <h5 class="card-title mb-2">{{$item->nama}}</h5>
+                            <span class="d-flex gap-2">
+                                <h5 class="card-title mb-2">{{$item->nama}}</h5>
+                                @if ($item->pic_id == auth()->id())
+                                    <p class="mb-0">(Owned)</p>
+                                @endif
+                            </span>
                             <h6 class="card-subtitle mt-3 mb-2 text-body-secondary">{{$item->lokasi}}</h6>
                             <div class="btn btn-primary rounded-pill mt-2 px-4">{{$item->kondisi}}</div>
                             <p class="text-end mb-0 mt-2">{{$item->created_at}}</p>
@@ -70,9 +75,9 @@
                 </div>
             @endforeach 
         </div>
-        @if (!$inventories->isEmpty())
-            <div class="d-grid gap-2 col-4 mx-auto my-5">
-                <button class="btn btn-outline-primary" type="button">Show More</button>
+        @if (!$inventories->isEmpty() && count($inventories) <= 8 && $showMore == false)
+            <div class="d-grid gap-2 col-4 mx-auto my-3">
+                <a href="/all" class="btn btn-outline-primary" type="button">Show More</a>
             </div>
         @endif
     </div>

@@ -1,43 +1,47 @@
-@extends('layout.plain')
+@extends('layout.admin')
 
 @section('title', 'Profile')
 
-@section('content')
+<style>
+    .bg-blue-light-gradient{
+        background: linear-gradient(90.21deg, #0E73B9 27.53%, #2FB6E9 66.07%);
+    }
+</style>
 
-<div class="container-lg d-flex flex-column align-items-center py-5 px-0">
-    <div class="row w-100">
-        <div class="col-4">
-            <div class="card border-0 shadow p-3 d-flex flex-column justify-content-between" style="min-height: 392px">
-                <div> 
-                    <div class="d-flex gap-3 mb-4">
+@section('content')
+<div class="container-fluid">
+    <div class="row flex-nowrap" style="height: 85%">
+        <div class="col-auto px-0">
+            <div id="sidebar" class="collapse collapse-horizontal border-end p-3">
+                <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start h-100 gap-3 d-flex flex-column" style="min-width: 250px;">
+                    <div class="d-flex gap-3 mb-2">
                         <i class="fa-regular fa-circle-user fa-3x"></i> 
                         <div class="d-flex flex-column">
                             <h5 class="mb-0">{{$user->name}}</h5>
                             <p class="mb-0">{{$user->username}}</p>
                         </div>
                     </div>
-                    <div class="list-group d-flex flex-column gap-2">
-                        <a href="#" class="list-group-item list-group-item-action border-0 rounded-3 active" aria-current="true">
-                            <h5>Account</h5>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0 rounded-3" aria-current="true">
-                            <h5>MySpareLog</h5>
-                        </a>
+                    <a href="/profile" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3 active">
+                        <h5 class="mb-0">Account</h5>
+                    </a>
+                    <a class="list-group-item d-inline-block list-group-item-action border-0 rounded-3"  data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h5 class="mb-0">MySpareLog</h5>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <div class="list-group border-0 rounded-0 text-sm-start gap-3">
+                            <a href="" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                                <h5 class="mb-0">Perlu Tindakan</h5>
+                            </a>
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                    <form action="/logout" method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-lg w-100">
-                            Logout
-                        </button>
-                    </form>
+                    <a class="list-group-item list-group-item-danger d-inline-block list-group-item-action border-0 rounded-3 mt-auto" href="/logout">
+                        <h5 class="mb-0">Logout</h5>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-8">
-            <div class="card border-0 shadow p-3">
+        <main class="col ps-md-2 pt-2">
+            <div class="card border-0 shadow p-4">
                 <form action="">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Email address</label>
@@ -60,9 +64,13 @@
                     </button>
                 </form>
             </div>
-        </div>
+        </main>
     </div>
-</div> 
-
-
+</div>
 @endsection
+<script>
+    function toggleSidebar(e) {
+        e.classList.toggle("fa-xmark")
+        e.classList.toggle("fa-bars")
+    }
+</script>

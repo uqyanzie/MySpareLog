@@ -26,6 +26,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password1'),
                 'divisi' => 'Divisi 1',
                 'cabang' => 'Cabang A',
+                'created_at' => now(), 
+                'updated_at' => now()
             ],
             [
                 'name' => 'Jane Smith',
@@ -35,6 +37,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password2'),
                 'divisi' => 'Divisi 2',
                 'cabang' => 'Cabang B',
+                'created_at' => now(), 
+                'updated_at' => now()
             ],
             [
                 'name' => 'Bob Johnson',
@@ -44,6 +48,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password3'),
                 'divisi' => 'Divisi 1',
                 'cabang' => 'Cabang A',
+                'created_at' => now(), 
+                'updated_at' => now()
             ],
             [
                 'name' => 'Emily Wilson',
@@ -53,6 +59,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password4'),
                 'divisi' => 'Divisi 2',
                 'cabang' => 'Cabang B',
+                'created_at' => now(), 
+                'updated_at' => now()
             ],
             [
                 'name' => 'David Lee',
@@ -62,6 +70,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password5'),
                 'divisi' => 'Divisi 1',
                 'cabang' => 'Cabang A',
+                'created_at' => now(), 
+                'updated_at' => now()
             ],
         ];
 
@@ -69,3 +79,4 @@ class UserSeeder extends Seeder
         DB::table('users')->insert($users);
     }
 }
+    

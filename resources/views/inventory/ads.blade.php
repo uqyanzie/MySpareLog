@@ -40,69 +40,50 @@
                 <button type="button" class="p-3 fs-4 d-flex justify-content-between align-items-center btn btn-light text-secondary shadow-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-1,10">
                     <span><i class="fas fa-screwdriver-wrench"></i> Peralatan Faspel</span>
                 </button>
-                <ul class="dropdown-menu w-100 p-0 m-0 fs-4 border-0">
-                    <li class="p-3 dropdown-item mb-3 rounded-3 shadow-sm">
-                        <a class="text-decoration-none text-secondary" href="#">
+                <div class="dropdown-menu w-100 p-0 m-0 fs-4 border-0">
+                    <a class="p-3 dropdown-item mb-3 rounded-3 shadow-sm text-decoration-none text-secondary" href="/ads/create/{{1}}">
                             CC
-                        </a>
-                    </li>
-                    <li class="p-3 dropdown-item mb-3 rounded-3 shadow-sm">
-                        <a class="text-decoration-none text-secondary" href="#">
+                    </a>
+                    <a class="p-3 dropdown-item mb-3 rounded-3 shadow-sm text-decoration-none text-secondary" href="/ads/create/{{2}}">
                             RTG
-                        </a>
-                    </li>
-                </ul>
+                    </a>
+                </div>
             </div>
             <div class="btn-group dropend">
                 <button type="button" class="p-3 fs-4 d-flex justify-content-between align-items-center btn btn-light text-secondary shadow-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-1,10">
                     <span><i class="fas fa-toolbox"></i> Instalasi Faspel</span>
                 </button>
-                <ul class="dropdown-menu w-100 p-0 m-0 fs-4 border-0">
-                    <li class="p-3 dropdown-item mb-3 rounded-3 shadow-sm">
-                        <a class="text-decoration-none text-secondary" href="#">
-                            Kubikel
-                        </a>
-                    </li>
-                    <li class="p-3 dropdown-item mb-3 rounded-3 shadow-sm">
-                        <a class="text-decoration-none text-secondary" href="#">
-                            Kabel
-                        </a>
-                    </li>
-                </ul>
+                <div class="dropdown-menu w-100 p-0 m-0 fs-4 border-0">
+                    <a class="p-3 dropdown-item mb-3 rounded-3 shadow-sm text-decoration-none text-secondary" href="/ads/create/{{3}}">
+                        Kubikel
+                    </a>
+                    <a class="p-3 dropdown-item mb-3 rounded-3 shadow-sm text-decoration-none text-secondary" href="/ads/create/{{4}}">
+                        Kabel
+                    </a>
+                </div>
             </div>
             <div class="btn-group dropend">
                 <button type="button" class="p-3 fs-4 d-flex justify-content-between align-items-center btn btn-light text-secondary shadow-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-1,10">
                     <span><i class="fas fa-ship"></i> Fasilitas Pelabuhan</span>
                 </button>
-                <ul class="dropdown-menu w-100 p-0 m-0 rounded-0 fs-4 border-0">
-                    <li class="p-3 dropdown-item mb-3 shadow-sm">
-                        <a class="text-decoration-none text-secondary" href="#">
-                            Fender
-                        </a>
-                    </li>
-                    <li class="p-3 dropdown-item mb-3 shadow-sm">
-                        <a class="text-decoration-none text-secondary" href="#">
-                            Bolder
-                        </a>
-                    </li>
-                </ul>
+                <div class="dropdown-menu w-100 p-0 m-0 rounded-0 fs-4 border-0">
+                    <a class="p-3 dropdown-item mb-3 rounded-3 shadow-sm text-decoration-none text-secondary" href="/ads/create/{{5}}">
+                        Fender
+                    </a>
+                    <a class="p-3 dropdown-item mb-3 rounded-3 shadow-sm text-decoration-none text-secondary" href="/ads/create/{{6}}">
+                        Bolder
+                    </a>
+                </div>
             </div>
-            <div class="btn-group dropend">
-                <button type="button" class="p-3 fs-4 d-flex justify-content-between align-items-center btn btn-light text-secondary shadow-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-1,10">
-                    <span><i class="far fa-building"></i> Rumah Tangga & Umum</span>
-                </button>
-                <!-- <ul class="dropdown-menu w-100 p-0 m-0 rounded-0 fs-4">
-                    
-                </ul> -->
-            </div>
-            <div class="btn-group dropend">
-                <button type="button" class="p-3 fs-4 d-flex justify-content-between align-items-center btn btn-light text-secondary shadow-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-1,10">
-                    <span><i class="far fa-folder"></i> Kearsipan/Keuangan</span>
-                </button>
-                <!-- <ul class="dropdown-menu w-100 p-0 m-0 rounded-0 fs-4">
-                    
-                </ul> -->
-            </div>
+           
+            <a class="p-3 fs-4 d-flex justify-content-between align-items-center btn btn-light text-secondary shadow-sm" href="/ads/create/{{7}}">
+                <span><i class="far fa-building"></i> Rumah Tangga & Umum</span>
+            </a>
+           
+            <a class="p-3 fs-4 d-flex justify-content-between align-items-center btn btn-light text-secondary shadow-sm" href="/ads/create/{{8}}">
+                <span><i class="far fa-folder"></i> Kearsipan/Keuangan</span>
+            </a>
+            
         </div>
     </div>
 </div>

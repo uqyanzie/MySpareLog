@@ -8,7 +8,7 @@
         <meta name="author" content="">
         <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}">
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>MySpareLog | @yield('title')</title>
 
         <!-- Bootstrap core CSS -->

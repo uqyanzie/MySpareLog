@@ -15,12 +15,14 @@ class TypeSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            ['nama_jenis' => 'CC', 'category_id' => 1],
-            ['nama_jenis' => 'RTG', 'category_id' => 1],
-            ['nama_jenis' => 'Kubikel', 'category_id' => 2], 
-            ['nama_jenis' => 'Kabel', 'category_id' => 2], 
-            ['nama_jenis' => 'Fender', 'category_id' => 3],
-            ['nama_jenis' => 'Bolder', 'category_id' => 3]
+            ['nama_jenis' => 'CC', 'created_at' => now(), 'updated_at' => now()],
+            ['nama_jenis' => 'RTG', 'created_at' => now(), 'updated_at' => now()],
+            ['nama_jenis' => 'Kubikel', 'created_at' => now(), 'updated_at' => now()], 
+            ['nama_jenis' => 'Kabel', 'created_at' => now(), 'updated_at' => now()], 
+            ['nama_jenis' => 'Fender', 'created_at' => now(), 'updated_at' => now()],
+            ['nama_jenis' => 'Bolder', 'created_at' => now(), 'updated_at' => now()],
+            ['nama_jenis' => 'Rumah Tangga dan Umum', 'created_at' => now(), 'updated_at' => now()],
+            ['nama_jenis' => 'Kearsipan/Keuangan', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

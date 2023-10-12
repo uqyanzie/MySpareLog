@@ -11,4 +11,5 @@ class AdsController extends Controller
         $title = "Pasang Iklan Anda";
         return view('inventory.ads', compact('title'));
     }
+    
 }

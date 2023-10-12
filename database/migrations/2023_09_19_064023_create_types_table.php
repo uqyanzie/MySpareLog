@@ -17,8 +17,6 @@ class CreateTypesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nama_jenis');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

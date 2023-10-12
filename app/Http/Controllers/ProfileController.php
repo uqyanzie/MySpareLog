@@ -8,13 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function show($id)
+    public function show()
     {   
-        if (\Auth::id() != $id){
-             return abort(404);
-        }
 
-        $user = User::find($id);
+        $user = User::find(auth()->user()->id);
         $title = "Profile";
 
         return view('user.profile', compact('user', 'title'));

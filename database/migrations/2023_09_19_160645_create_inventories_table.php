@@ -20,10 +20,9 @@ class CreateInventoriesTable extends Migration
             $table->enum('status', ['tersedia', 'lelang', 'dihapus', 'relokasi']);
             $table->enum('kondisi', ['baru', 'bekas']);
             $table->string('lokasi');
+            $table->text('deskripsi');
             $table->text('foto');
             $table->integer('stok');
-            // $table->enum('kategori', ['Peralatan Faspel', 'Instalasi Faspel', 'Fasilitas Pelabuhan', 'Kearsipan/Keuangan', 'Rumah Tangga & Umum']);
-            // $table->enum('jenis', ['CC', 'RTG', 'Kubikel', 'Kabel', 'Fender', 'Bolder']);
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('pic_id');
