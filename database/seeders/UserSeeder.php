@@ -19,6 +19,18 @@ class UserSeeder extends Seeder
         // Seeder data untuk 5 pengguna
         $users = [
             [
+                'role' => 'admin',
+                'name' => 'Admin',
+                'username' => 'mysparelogadmin',
+                'email' => 'admin@mail.com',
+                'phone' => '621234567890',
+                'password' => Hash::make('admin123'),
+                'status' => 'aktif',
+                'created_at' => now(), 
+                'updated_at' => now()
+            ],
+            [
+                'role' => 'user',
                 'name' => 'John Doe',
                 'username' => 'johndoe',
                 'email' => 'johndoe@example.com',
@@ -26,10 +38,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password1'),
                 'divisi' => 'Divisi 1',
                 'cabang' => 'Cabang A',
+                'status' => 'aktif',
                 'created_at' => now(), 
                 'updated_at' => now()
             ],
             [
+                'role' => 'user',
                 'name' => 'Jane Smith',
                 'username' => 'janesmith',
                 'email' => 'janesmith@example.com',
@@ -37,10 +51,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password2'),
                 'divisi' => 'Divisi 2',
                 'cabang' => 'Cabang B',
+                'status' => 'aktif',
                 'created_at' => now(), 
                 'updated_at' => now()
             ],
             [
+                'role' => 'user',
                 'name' => 'Bob Johnson',
                 'username' => 'bobjohnson',
                 'email' => 'bobjohnson@example.com',
@@ -48,10 +64,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password3'),
                 'divisi' => 'Divisi 1',
                 'cabang' => 'Cabang A',
+                'status' => 'aktif',
                 'created_at' => now(), 
                 'updated_at' => now()
             ],
             [
+                'role' => 'user',
                 'name' => 'Emily Wilson',
                 'username' => 'emilywilson',
                 'email' => 'emilywilson@example.com',
@@ -59,10 +77,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password4'),
                 'divisi' => 'Divisi 2',
                 'cabang' => 'Cabang B',
+                'status' => 'aktif',
                 'created_at' => now(), 
                 'updated_at' => now()
             ],
             [
+                'role' => 'user',
                 'name' => 'David Lee',
                 'username' => 'davidlee',
                 'email' => 'davidlee@example.com',
@@ -70,6 +90,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password5'),
                 'divisi' => 'Divisi 1',
                 'cabang' => 'Cabang A',
+                'status' => 'aktif',
                 'created_at' => now(), 
                 'updated_at' => now()
             ],

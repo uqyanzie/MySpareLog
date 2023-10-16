@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('divisi')->nullable();
             $table->string('cabang')->nullable();
+            $table->enum('status', ['aktif', 'nonaktif']);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

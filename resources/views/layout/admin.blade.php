@@ -15,7 +15,7 @@
                 <i onclick="toggleSidebar(this)" class="fa-solid fa-bars text-white"></i>
             </button>
             <h1 class="text-white">
-                My Profile
+                @yield('title', 'title')
             </h1>
         </div>
     </nav>

@@ -7,6 +7,7 @@ use App\Http\Controllers\AdsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,13 +34,13 @@ Route::get('/activity', function () {
 })->middleware('auth');
 
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth');
+Route::get('/my-inventories', [ProfileController::class, 'userInventories'])->middleware('auth');
 
-Route::get('/checkout', function () {
-    return view('inventory.checkout');
-});
+Route::get('/checkout/{id}', [AdsController::class, 'checkout'])->middleware('auth');
 
 Route::get('/inventory/{id}', [InventoryController::class, 'getInventoryById']);
 
+Route::get('admin', [AdminController::class, 'index']);
 Route::get('admin/inventories', [AdminController::class, 'inventories']);
 Route::get('admin/users', [AdminController::class, 'users']);
 

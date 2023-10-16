@@ -18,7 +18,7 @@
             <div class="carousel-inner">
                 @foreach ($inventoryImages as $image)
                     <div class="carousel-item active">
-                        <img src="{{asset('storage/inventories/'.$image->filename)}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('storage/inventories/'.$image->filename)}}" class="d-block w-100" style="max-height: 600px; object-fit: contain">
                     </div>
                 @endforeach
             </div>
@@ -49,7 +49,7 @@
                                 <i class="fa-regular fa-circle-user fs-2"></i>
                                 <div class="d-flex flex-column">
                                     <h5 class="mb-0 text-secondary">PIC</h5>
-                                    <p class="fw-bold mb-0">{{$pic->name}}</p>
+                                    <p class="fw-bold mb-0">{{$inventory->pic_name}}</p>
                                 </div>
                             </div>
                         </div>
@@ -78,35 +78,34 @@
                                 <i class="fa-solid fa-phone fs-2"></i>
                                 <div class="d-flex flex-column">
                                     <h5 class="mb-0 text-secondary">No. PIC</h5>
-                                    <p class="fw-bold mb-0">{{$pic->phone}}</p>
+                                    <p class="fw-bold mb-0">{{$inventory->pic_phone}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 p-5 d-flex flex-column gap-5">
-                    <a class="btn btn-primary rounded-4 py-3 fs-5" href="/checkout">
+                    <a class="btn btn-primary rounded-4 py-3 fs-5" href="/checkout/{{$inventory->id}}">
                         + Request
                     </a>
                     <div class="d-flex gap-3">
                         <i class="fa-regular fa-circle-user fs-2"></i>
                         <div class="d-flex flex-column">
                             <h5 class="mb-0 text-secondary">PIC</h5>
-                            <p class="fw-bold mb-0">{{$pic->name}}</p>
+                            <p class="fw-bold mb-0">{{$inventory->pic_name}}</p>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary rounded-4 fs-5 py-3">
-                        Chat PIC
-                    </button>
                 </div>
             </div>
         </div>
 
         <div class="container-sm border border-1 border-secondary my-5"></div>
             
-        <div class="container-sm d-flex flex-column flex-lg-row justify-content-lg-between mb-5">
+        <div class="container-sm mb-5">
             <h2 style="font-weight: bold">Deskripsi</h2>
-            <textarea name="" id="" cols="60" rows="10"></textarea>
+            <article class="border p-2" style="min-height: 180px">
+                {{$inventory->deskripsi}}
+            </article>
         </div>
 
     </div>

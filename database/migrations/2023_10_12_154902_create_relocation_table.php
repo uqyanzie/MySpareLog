@@ -15,8 +15,8 @@ class CreateRelocationTable extends Migration
     {
         Schema::create('relocation', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('tanggal_pengajuan');
-            $table->timestamp('tanggal_selesai');
+            $table->timestamp('tanggal_pengajuan')->nullable();
+            $table->timestamp('tanggal_selesai')->nullable();
             $table->unsignedBigInteger('inventory_id');
             $table->foreign('inventory_id')->references('id')->on('inventories')->onDelete('cascade')->onUpdate('cascade');
             $table->text('file_relokasi_name');

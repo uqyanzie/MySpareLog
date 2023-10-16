@@ -24,7 +24,7 @@
                     <a href="/admin/users" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
                         <h5 class="mb-0">Data User</h5>
                     </a>
-                    <a href="/admin/inventories" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3 active">
+                    <a href="/admin/inventories" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
                         <h5 class="mb-0">Data Barang</h5>
                     </a>
                     <a class="list-group-item list-group-item-danger d-inline-block list-group-item-action border-0 rounded-3 mt-auto" href="/logout">
@@ -35,39 +35,9 @@
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="card border-0 shadow p-4">
-                <table class="table">
-                    <thead>
-                        <tr class="table-info">
-                            <th>No</th>
-                            <th>Nama Barang</th>
-                            <th>Kondisi</th>
-                            <th>Lokasi</th>
-                            <th>PIC</th>
-                            <th>Stok</th>
-                            <th>Status</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($inventories as $inventory)
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$inventory->nama}}</td>
-                            <td>{{$inventory->kondisi}}</td>
-                            <td>{{$inventory->lokasi}}</td>
-                            <td>{{$inventory->pic_id}}</td>
-                            <td>{{$inventory->stok}}</td>
-                            <td>{{$inventory->status}}</td>
-                            <td>
-                                <div class="d-flex gap-3 justify-content-center">
-                                    <button class="btn btn-primary rounded-5 px-4">Edit</button>
-                                    <button class="btn btn-danger rounded-5 px-4">Hapus</button>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <h1>
+                    Hallo, {{$user->name}}
+                </h1>
             </div>
         </main>
     </div>

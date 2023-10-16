@@ -21,15 +21,27 @@
     <div class="banner">
     </div>
     <div style="background-color:#0E73B9;color:white;height:100px;">
-        <div class="container">
-            <div class="row">
-                <div class="col" style="margin-top:30px;font-size:24px">
-                    Search Result : 
-                </div>
-                <div class="col" style="display:flex;justify-content:flex-end;margin-top:20px">
-                    <label style="margin-top:15px;margin-right:10px">Filter</label>
-                    <input type="text" placeholder="Default" id="" style="border:0;border-radius:10px;width:188px;height:55px;padding-left:20px">
-                </div>
+        <div class="container d-flex justify-content-between py-3 align-items-center">
+            <h4>
+                Search Result : 
+            </h4>
+            <div class="d-flex gap-3">
+                <label for="type">
+                    Tipe
+                    <select class="form-select" id="type" name="tipe">
+                        <option value="All">All</option>
+                        @foreach ($types as $type)
+                            <option value="{{$type->id}}">{{$type->nama_jenis}}</option>
+                        @endforeach
+                    </select>
+                </label>
+                <label for="condition">Kondisi
+                    <select class="form-select" id="condition" name="kondisi">
+                        <option value="All">All</option>
+                        <option value="baru">baru</option>
+                        <option value="bekas">bekas</option>
+                    </select>       
+                </label>
             </div>
         </div>
     </div>

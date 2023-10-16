@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {   
@@ -28,11 +29,18 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+        
+        $user = User::where('email', '=', $request->input('email'), 'and', 'password', '=', Hash::make($request->input('password')) )->get();
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
-            return redirect()->intended('/');
+
+            if($user && $user[0]->role == 'admin'){
+                return redirect()->intended('/admin');
+            }
+            else{
+                return redirect()->intended('/');
+            }
         }
         
         return back()->with('loginError', 'Gagal Login');

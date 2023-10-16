@@ -15,9 +15,9 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('tanggal_pengajuan');
-            $table->timestamp('tanggal_persetujuan');
-            $table->timestamp('tanggal_penerimaan');
+            $table->timestamp('tanggal_pengajuan')->nullable();
+            $table->timestamp('tanggal_penerimaan')->nullable();
+            $table->timestamp('tanggal_persetujuan')->nullable();
             $table->enum('status', ['diajukan', 'disetujui', 'ditolak', 'dikirim', 'diterima']);
             $table->unsignedBigInteger('inventory_id');
             $table->foreign('inventory_id')->references('id')->on('inventories')->onDelete('cascade')->onUpdate('cascade');

@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'Users')
+@section('title', 'Users Data')
 
 <style>
     .bg-blue-light-gradient{
@@ -17,49 +17,69 @@
                     <div class="d-flex gap-3 mb-2">
                         <i class="fa-regular fa-circle-user fa-3x"></i> 
                         <div class="d-flex flex-column">
-                            <h5 class="mb-0">{{$user->name}}</h5>
-                            <p class="mb-0">{{$user->username}}</p>
+                            <h5 class="mb-0">{{$me->name}}</h5>
+                            <p class="mb-0">{{$me->username}}</p>
                         </div>
                     </div>
-                    <a href="/profile/{{auth()->user()->id}}" data-bs-parent="#sidebar" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3 active" aria-current="true">
-                        <h5 class="mb-0">Account</h5>
+                    <a href="/admin/users" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3 active">
+                        <h5 class="mb-0">Data User</h5>
                     </a>
-                    <a class="list-group-item d-inline-block list-group-item-action border-0 rounded-3"  data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <h5 class="mb-0">MySpareLog</h5>
+                    <a href="/admin/inventories" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                        <h5 class="mb-0">Data Barang</h5>
                     </a>
-                    <div class="collapse" id="collapseExample">
-                        <div class="list-group border-0 rounded-0 text-sm-start gap-3">
-                            <a href="" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
-                                <h5 class="mb-0">Perlu Tindakan</h5>
-                            </a>
-                        </div>
-                    </div>
+                    <a class="list-group-item list-group-item-danger d-inline-block list-group-item-action border-0 rounded-3 mt-auto" href="/logout">
+                        <h5 class="mb-0">Logout</h5>
+                    </a>
                 </div>
             </div>
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="card border-0 shadow p-4">
-                <form action="">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value="{{$user->email}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="**********" value="{{$user->password}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Divisi</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nama divisi" value="{{$user->divisi}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Cabang</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="alamat cabang" value="{{$user->cabang}}">
-                    </div>
-                    <button class="btn btn-lg btn-primary float-end" type="submit">
-                        Ubah
-                    </button>
-                </form>
+                <div class="d-flex gap-2 mb-3">
+                <button class="btn btn-success">Download CSV</button>
+                <button class="btn btn-secondary">Create New User</button>
+                </div>
+                <table class="table text-center">
+                    <thead>
+                        <tr class="table-info">
+                            <th>ID</th>
+                            <th>Role</th>
+                            <th>Username</th>
+                            <th>Divisi</th>
+                            <th>Cabang</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                        <tr>
+                            <td>{{$user->id}}</td>
+                            <td>{{$user->role}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->divisi}}</td>
+                            <td>{{$user->cabang}}</td>
+                            <td>
+                                @if ($user->status == 'aktif')
+                                <span class="badge rounded-pill text-bg-success px-3">
+                                    <h6 class="mb-0">{{$user->status}}</h6>
+                                </span>
+                                @else
+                                <span class="badge rounded-pill text-bg-danger">
+                                    <h6 class="mb-0">{{$user->status}}</h6>
+                                </span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="d-flex gap-3 justify-content-center">
+                                    <button class="btn btn-primary rounded-5 px-4">Edit</button>
+                                    <button class="btn btn-danger rounded-5 px-4">Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </main>
     </div>

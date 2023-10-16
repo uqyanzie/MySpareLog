@@ -42,40 +42,39 @@ class InventoryController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
+        $types = Type::all();
 
         if ($search) {
             $inventories = Inventory::where('nama', 'like', '%' . $search . '%')
                 ->orderBy('created_at', 'desc')
                 ->get();
         } else {
-            $inventories = NULL;
+            $inventories = Inventory::orderBy('created_at', 'desc')->get();
         }
 
-        return view('inventory.search', compact('inventories'));
+        return view('inventory.search', compact('inventories', 'types'));
     }
 
     public function getInventoryById($id)
     {
-        $inventory = Inventory::find($id);
+        $inventory = Inventory::join('users', 'inventories.pic_id', '=', 'users.id')
+            ->where('inventories.id', $id)
+            ->select('inventories.*', 'users.name as pic_name', 'users.phone as pic_phone')
+            ->first();
+        
         $inventoryImages = InventoryImages::where('inventory_id', $id)->get();
 
         if (!$inventory) {
             return abort(404); // Handle jika inventory dengan ID tertentu tidak ditemukan
         }
 
-        // Lakukan join dengan tabel users
-        $pic = User::join('inventories', 'users.id', '=', 'inventories.pic_id')
-            ->where('inventories.id', $id)
-            ->select('users.id', 'users.name', 'users.phone')
-            ->first();
-
         $auth_user_id = \Auth::id();
 
-        if($pic->id == $auth_user_id){
-            return view('inventory.ownerDetail', compact('inventory', 'pic', 'inventoryImages'));
+        if($inventory->pic_id == $auth_user_id){
+            return view('inventory.ownerDetail', compact('inventory', 'inventoryImages'));
         }
         else{
-            return view('inventory.requestDetail', compact('inventory', 'pic', 'inventoryImages'));
+            return view('inventory.requestDetail', compact('inventory', 'inventoryImages'));
         }
     }
 

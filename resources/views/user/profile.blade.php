@@ -29,8 +29,20 @@
                     </a>
                     <div class="collapse" id="collapseExample">
                         <div class="list-group border-0 rounded-0 text-sm-start gap-3">
-                            <a href="" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                            <a href="/my-inventories" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                                <h5 class="mb-0">Semua</h5>
+                            </a>
+                            <a href="/need-actions" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
                                 <h5 class="mb-0">Perlu Tindakan</h5>
+                            </a>
+                            <a href="/completed" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                                <h5 class="mb-0">Selesai</h5>
+                            </a>
+                            <a href="/auctioned" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                                <h5 class="mb-0">Lelang</h5>
+                            </a>
+                            <a href="/profile" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                                <h5 class="mb-0">Sampah</h5>
                             </a>
                         </div>
                     </div>
