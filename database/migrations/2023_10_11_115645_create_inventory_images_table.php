@@ -17,7 +17,7 @@ class CreateInventoryImagesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->text('filename');
-            $table->unsignedBigInteger('inventory_id');
+            $table->unsignedBigInteger('inventory_id')->nullable()->default(null);
             $table->foreign('inventory_id')->references('id')->on('inventories')->onDelete('cascade')->onUpdate('cascade');
         });
     }

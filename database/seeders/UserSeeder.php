@@ -24,6 +24,8 @@ class UserSeeder extends Seeder
                 'username' => 'mysparelogadmin',
                 'email' => 'admin@mail.com',
                 'phone' => '621234567890',
+                'divisi' => null,
+                'cabang' => null,
                 'password' => Hash::make('admin123'),
                 'status' => 'aktif',
                 'created_at' => now(), 

@@ -49,7 +49,7 @@
               </li>
               @else
               <li class="nav-item px-2">
-                <a class="nav-link text-dark" href="/login">
+                <a class="btn btn-outline-secondary w-100" href="/login">
                 <i class="fa-solid fa-arrow-right-to-bracket"></i>
                   Login
                 </a>
@@ -101,7 +101,8 @@
             </li>
             @else
             <li class="nav-item">
-              <a class="nav-link fs-5 text-decoration-underline" href="/login">
+              <a class="btn btn-success rounded-pill" href="/login">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
                 Login
               </a>
             </li>    

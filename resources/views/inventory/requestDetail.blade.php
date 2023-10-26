@@ -35,7 +35,7 @@
         <div class="container-sm my-5">
             <h2 style="font-weight: bold">{{$inventory->nama}} </h2>
             <p style="margin-top: -5px">{{$inventory->lokasi}} </p>
-            <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1">
+            <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1 text-capitalize">
                 {{$inventory->kondisi}}  
             </button>
         </div>
@@ -49,7 +49,7 @@
                                 <i class="fa-regular fa-circle-user fs-2"></i>
                                 <div class="d-flex flex-column">
                                     <h5 class="mb-0 text-secondary">PIC</h5>
-                                    <p class="fw-bold mb-0">{{$inventory->pic_name}}</p>
+                                    <p class="fw-semibold mb-0">{{$inventory->pic_name}}</p>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 <i class="fa-solid fa-location-dot fs-2"></i>
                                 <div class="d-flex flex-column">
                                     <h5 class="mb-0 text-secondary">Location</h5>
-                                    <p class="fw-bold mb-0">{{$inventory->lokasi}}</p>
+                                    <p class="fw-semibold mb-0">{{$inventory->lokasi}}</p>
                                 </div>
                             </div>
                         </div>
@@ -66,10 +66,10 @@
                             <div class="d-flex gap-3">
                                 <i class="fa-solid fa-border-all fs-2"></i>
                                 <div class="d-flex flex-column">
-                                <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1">
+                                <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1 text-capitalize">
                                     {{$inventory->kondisi}}  
                                 </button>
-                                    <p class="fw-bold mb-0">Layak pakai</p>
+                                    <p class="fw-semibold mb-0">Layak pakai</p>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,24 @@
                                 <i class="fa-solid fa-phone fs-2"></i>
                                 <div class="d-flex flex-column">
                                     <h5 class="mb-0 text-secondary">No. PIC</h5>
-                                    <p class="fw-bold mb-0">{{$inventory->pic_phone}}</p>
+                                    <p class="fw-semibold mb-0">{{$inventory->pic_phone}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-circle-info fs-2"></i>
+                                <div class="d-flex flex-column">
+                                    <h5 class="mb-0 text-secondary">Status</h5>
+                                    <p class="fw-semibold mb-0 text-capitalize">{{$inventory->status}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-box-archive fs-2"></i>
+                                <div class="d-flex flex-column">
+                                    <h5 class="mb-0 text-secondary">Stok : {{$inventory->stok}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +109,7 @@
                         <i class="fa-regular fa-circle-user fs-2"></i>
                         <div class="d-flex flex-column">
                             <h5 class="mb-0 text-secondary">PIC</h5>
-                            <p class="fw-bold mb-0">{{$inventory->pic_name}}</p>
+                            <p class="fw-semibold mb-0">{{$inventory->pic_name}}</p>
                         </div>
                     </div>
                 </div>

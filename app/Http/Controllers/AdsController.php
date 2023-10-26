@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Inventory;
+use App\Models\User;
 
 class AdsController extends Controller
 {
@@ -14,6 +15,7 @@ class AdsController extends Controller
     }
     
     public function checkout($id){
+        $user = User::find(\Auth::id());
         $inventory = Inventory::join('users', 'inventories.pic_id', '=', 'users.id')
         ->where('inventories.id', $id)
         ->select('inventories.*', 'users.name as pic_name', 'users.phone as pic_phone')
@@ -21,6 +23,6 @@ class AdsController extends Controller
 
         $title = "Checkout";
 
-        return view('inventory.checkout', compact('inventory', 'title'));
+        return view('inventory.checkout', compact('inventory', 'user', 'title'));
     }
 }

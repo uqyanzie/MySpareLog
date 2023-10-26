@@ -17,6 +17,9 @@ class CreateRelocationTable extends Migration
             $table->id();
             $table->timestamp('tanggal_pengajuan')->nullable();
             $table->timestamp('tanggal_selesai')->nullable();
+            $table->string('lokasi_awal');
+            $table->string('lokasi_akhir');
+            $table->integer('jumlah');
             $table->unsignedBigInteger('inventory_id');
             $table->foreign('inventory_id')->references('id')->on('inventories')->onDelete('cascade')->onUpdate('cascade');
             $table->text('file_relokasi_name');

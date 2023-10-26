@@ -52,7 +52,7 @@
                                 <i class="fa-regular fa-circle-user fs-2"></i>
                                 <div class="d-flex flex-column">
                                     <h5 class="mb-0 text-secondary">PIC</h5>
-                                    <p class="fw-bold mb-0">{{$inventory->pic_name}}</p>
+                                    <p class="mb-0">{{$inventory->pic_name}}</p>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +61,8 @@
                                 <i class="fa-solid fa-location-dot fs-2"></i>
                                 <div class="d-flex flex-column">
                                     <h5 class="mb-0 text-secondary">Location</h5>
-                                    <p class="fw-bold mb-0">Tanjung Perak, Surabaya</p>
-                                    <p class="fw-bold mb-0">Terminal Nilam</p>
+                                    <p class="mb-0">Tanjung Perak, Surabaya</p>
+                                    <p class="mb-0">Terminal Nilam</p>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                 <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1">
                                     Bekas 
                                 </button>
-                                    <p class="fw-bold mb-0">Layak pakai</p>
+                                    <p class="mb-0">Layak pakai</p>
                                 </div>
                             </div>
                         </div>

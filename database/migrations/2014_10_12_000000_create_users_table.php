@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->enum('role', ['admin', 'user']);
             $table->string('phone');
             $table->string('password');
-            $table->string('divisi')->nullable();
-            $table->string('cabang')->nullable();
+            $table->enum('divisi', ['Teknik', 'Operasional', 'Teknologi Informasi'])->nullable()->default(null);
+            $table->enum('cabang', ['Terminal Nilam', 'Terminal Jamrud', 'Pelindo Subreg Jawa'])->nullable()->default(null);
             $table->enum('status', ['aktif', 'nonaktif']);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

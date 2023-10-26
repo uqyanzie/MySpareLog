@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class InventorySeeder extends Seeder
 {
@@ -14,6 +15,7 @@ class InventorySeeder extends Seeder
      */
     public function run()
     {
+        $users = User::all();
         // Daftar nama barang
         $barang = [
             ['nama' => 'Hand Trucks', 'foto' => 'hand trucks.jpg', 'type_id' => 1],
@@ -34,11 +36,13 @@ class InventorySeeder extends Seeder
                 'nama' => $barang[$i]['nama'],
                 'status' => 'tersedia',
                 'kondisi' => 'baru',
+                'nama_pic' => $users[$i+1]->name,
+                'telp_pic' => $users[$i+1]->phone,
                 'stok' => 2,
                 'deskripsi' => 'Deskripsi '.$i,
                 'lokasi' => 'Gudang ' . ($i + 1),
                 'foto' => $barang[$i]['foto'], 
-                'pic_id' => $i+1,
+                'pic_id' => $i+2,
                 'type_id' => $barang[$i]['type_id'],
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -49,11 +53,13 @@ class InventorySeeder extends Seeder
                 'nama' => $barang[$i+5]['nama'],
                 'status' => 'tersedia',
                 'kondisi' => 'bekas',
+                'nama_pic' => $users[$i+1]->name,
+                'telp_pic' => $users[$i+1]->phone,
                 'stok' => 2,
                 'deskripsi' => 'Deskripsi '.$i,
                 'lokasi' => 'Gudang ' . ($i + 1),
                 'foto' => $barang[$i+5]['foto'], 
-                'pic_id' => $i+1,
+                'pic_id' => $i+2,
                 'type_id' => $barang[$i+5]['type_id'],
                 'created_at' => now(),
                 'updated_at' => now(),

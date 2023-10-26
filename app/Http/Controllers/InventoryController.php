@@ -91,11 +91,15 @@ class InventoryController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'lokasi' => 'required',
-            'stok' => 'required|numeric'
+            'stok' => 'required|numeric',
+            'nama_pic' => 'required',
+            'telp_pic' => 'required|numeric',
         ]);
 
         $inventory = new Inventory();
         $inventory->nama = $request->input('nama');
+        $inventory->nama_pic = $request->input('nama_pic');
+        $inventory->telp_pic = $request->input('telp_pic');
         $inventory->type_id = $request->input('type_id');
         $inventory->stok = $request->input('stok');
         $inventory->deskripsi = $request->input('deskripsi');

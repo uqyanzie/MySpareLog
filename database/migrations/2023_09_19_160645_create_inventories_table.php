@@ -17,6 +17,8 @@ class CreateInventoriesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nama');
+            $table->string('nama_pic');
+            $table->string('telp_pic');
             $table->enum('status', ['tersedia', 'lelang', 'dihapus', 'relokasi']);
             $table->enum('kondisi', ['baru', 'bekas']);
             $table->string('lokasi');

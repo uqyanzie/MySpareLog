@@ -76,7 +76,7 @@
             @endforeach 
         </div>
         @if (!$inventories->isEmpty() && count($inventories) <= 8 && $showMore == false)
-            <div class="d-grid gap-2 col-4 mx-auto my-3">
+            <div class="d-grid gap-2 col-4 mx-auto my-5">
                 <a href="/all" class="btn btn-outline-primary" type="button">Show More</a>
             </div>
         @endif

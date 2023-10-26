@@ -16,7 +16,7 @@
         </div>  
         <div class="d-flex flex-column flex-lg-row p-5 justify-content-around border mb-5 gap-5">
             <div class="d-flex flex-column gap-4"> 
-                <a href="#" class="text-decoration-none">
+                <a href="#">
                     <div class="card shadow">
                         <div class="row g-0">
                             <div class="col-lg-6 col-md-12">

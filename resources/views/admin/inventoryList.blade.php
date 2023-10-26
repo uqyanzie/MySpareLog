@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'Inventories')
+@section('title', 'Admin - Inventories')
 
 <style>
     .bg-blue-light-gradient{

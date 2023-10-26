@@ -29,52 +29,55 @@
                         </div>
                     </label>
                 </div>
-
+            </div>
+            <label class="my-2">
+                <h5>Judul Iklan*</h5>
+                <input row="3" type="text" name="nama" class="form-control" required>
+            </label>
+            <label for="stok" class="w-25 my-2">
+                <h5>On Hand Stock*</h5>
+                <div class="input-group input-group-lg border rounded-3">
+                    <button class="btn btn-outline-dark-subtle" type="button" id="button-addon1" onclick="stepDown()">-</button>
+                    <input name="stok" id="stok" type="number" value="0" min="0" class="form-control text-center" required>
+                    <button class="btn btn-outline-dark-subtle" type="button" id="button-addon2" onclick="stepUp()">+</button>
                 </div>
-                <label>
-                    <h5>Judul Iklan*</h5>
-                    <input row="3" type="text" name="nama" class="form-control mb-3">
-                </label>
-                <label>
-                    <h5>On Hand Stock*</h5>
-                    <input type="number" name="stok" value="0" class="form-control mb-3">
-                </label>
-                <label>
-                    <h5>Deskripsi</h5>
-                    <textarea rows="4" type="text" name="deskripsi" class="form-control mb-3"></textarea>
-                </label>
-                <label style="padding-top: 0px">
-                    <h5>Lokasi*</h5>
-                    <textarea rows="4" type="text" name="lokasi" class="form-control mb-3"></textarea>
+            </label>
+            <label class="my-2>
+                <h5>Deskripsi</h5>
+                <textarea rows="4" type="text" name="deskripsi" class="form-control mb-3"></textarea>
+            </label>
+            <label class="my-2">
+                <h5>Lokasi*</h5>
+                <input type="text" name="lokasi" class="form-control mb-3" value="{{$pic_data->cabang}}" disabled>
+            </label>
+        </div>
+        <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px">
+            <h5>Unggah Foto Barang</h5>
+            <div class="row col-12 g-3" id="imagesPreview">
+            </div>
+            <div class="row col-3 g-3">
+                <label class="label col-12 m-0" for="images">
+                    <input type="file" name="imageFile[]" class="custom-file-input" id="images" accept=".jpg, .jpeg, .png" multiple/>
+                    <span class="d-block text-center">
+                        <i class="fa-solid fa-camera fa-5x"></i>
+                        <h5 class="fw-bold">
+                            Tambahkan foto
+                        </h5>
+                    </span>
                 </label>
             </div>
-            <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px">
-                <h5>Unggah Foto Barang</h5>
-                <div class="row col-12 g-3" id="imagesPreview">
-                </div>
-                <div class="row col-3 g-3">
-                    <label class="label col-12 m-0" for="images">
-                        <input type="file" name="imageFile[]" class="custom-file-input" id="images" multiple/>
-                        <span class="d-block text-center">
-                            <i class="fa-solid fa-camera fa-5x"></i>
-                            <h5 class="fw-bold">
-                                Tambahkan foto
-                            </h5>
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px">
+        </div>
+        <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px">
             <h5 style="padding-bottom: 10px">Data PIC</h5>    
             <div class="col-lg-10 col-sm-8">
                 <div class="row">
                     <div class="col-lg-6 col-sm-12">
                         <div style="font-weight:400;font-size:24px;color:rgba(153, 153, 153, 1);padding-bottom:10px">Nama</div>
-                        <input type="text" class="form-control" value="{{$pic_data->name}}" disabled>
+                        <input type="text" name="nama_pic" class="form-control" value="{{$pic_data->name}}">
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <div style="font-weight:400;font-size:24px;color:rgba(153, 153, 153, 1);padding-bottom:10px">No. Telp</div>
-                        <input type="text" class="form-control" value="{{$pic_data->phone}}" disabled>
+                        <input type="text" name="telp_pic" class="form-control" value="{{$pic_data->phone}}">
                     </div>
                 </div>   
             </div>
@@ -119,7 +122,29 @@
       .label:valid + span {
         color: #ffffff;
       }
+    
+      input[type="number"] {
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+    }
 </style>
+
+<script>
+    function stepUp(){
+        var input = document.getElementById("stok");
+        input.stepUp();
+    }
+
+    function stepDown(){
+        var input = document.getElementById("stok");
+        input.stepDown();
+    }
+</script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script >
