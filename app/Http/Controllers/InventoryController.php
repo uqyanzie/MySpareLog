@@ -9,11 +9,12 @@ use App\Models\User;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 
+
 class InventoryController extends Controller
 {
     public function getAllInventories()
     {
-        if(!\Auth::id()){
+        if(!Auth::id()){
             $inventories = Inventory::orderBy('created_at', 'desc')->get();
         }
         else{
@@ -27,7 +28,7 @@ class InventoryController extends Controller
 
     public function get8Inventories()
     {
-        if(!\Auth::id()){
+        if(!Auth::id()){
             $inventories = Inventory::orderBy('created_at', 'desc')->take(8)->get();
         }
         else{
@@ -68,7 +69,7 @@ class InventoryController extends Controller
             return abort(404); // Handle jika inventory dengan ID tertentu tidak ditemukan
         }
 
-        $auth_user_id = \Auth::id();
+        $auth_user_id = Auth::id();
 
         if($inventory->pic_id == $auth_user_id){
             return view('inventory.ownerDetail', compact('inventory', 'inventoryImages'));
@@ -82,51 +83,64 @@ class InventoryController extends Controller
         $type = Type::find($id);
         $title = "Pasang Iklan Anda";
 
-        $pic_data = \Auth::user();
+        $pic_data = Auth::user();
 
         return view('inventory.createAds', compact('type', 'title', 'pic_data'));
     }
 
     public function store(Request $request){
-        $this->validate($request, [
-            'nama' => 'required',
-            'lokasi' => 'required',
-            'stok' => 'required|numeric',
-            'nama_pic' => 'required',
-            'telp_pic' => 'required|numeric',
-        ]);
 
-        $inventory = new Inventory();
-        $inventory->nama = $request->input('nama');
-        $inventory->nama_pic = $request->input('nama_pic');
-        $inventory->telp_pic = $request->input('telp_pic');
-        $inventory->type_id = $request->input('type_id');
-        $inventory->stok = $request->input('stok');
-        $inventory->deskripsi = $request->input('deskripsi');
-        $inventory->lokasi = $request->input('lokasi');
-        $inventory->pic_id = \Auth::id();
-
-        if(sizeOf($request->allFiles('imageFile')) > 0){
-            $images = $request->file('imageFile');
-            $imageName = time().'.'.$images[0]->extension();
-            $images[0]->storeAs('inventories', $imageName);
-            $inventory->foto = $imageName;
-        }
-
-        $inventory->save();
-
-        if($request->allFiles('imageFile')){
-            $imageFiles = $request->allFiles('imageFile');
-            $images = $imageFiles['imageFile'];
-            for($i = 0; $i < sizeof($images); $i++){
-                $imageName = time().'_'.($i+1).'.'.$images[$i]->extension();
-                $images[$i]->storeAs('inventories', $imageName);
-                $inventoryImages = new InventoryImages();
-                $inventoryImages->inventory_id = $inventory->id;
-                $inventoryImages->filename = $imageName;
-                $inventoryImages->save();
+        try{
+            $this->validate($request, [
+                'nama' => 'required',
+                'lokasi' => 'required',
+                'stok' => 'required|numeric',
+                'nama_pic' => 'required',
+                'telp_pic' => 'required|numeric',
+            ]);
+            $inventory = new Inventory();
+            $inventory->nama = $request->input('nama');
+            $inventory->nama_pic = $request->input('nama_pic');
+            $inventory->telp_pic = $request->input('telp_pic');
+            $inventory->type_id = $request->input('type_id');
+            $inventory->stok = $request->input('stok');
+            $inventory->deskripsi = $request->input('deskripsi');
+            $inventory->lokasi = $request->input('lokasi');
+            $inventory->pic_id = Auth::id();
+    
+            if(sizeOf($request->allFiles('imageFile')) > 0){
+                $images = $request->file('imageFile');
+                $imageName = time().'.'.$images[0]->extension();
+                $images[0]->storeAs('inventories', $imageName);
+                $inventory->foto = $imageName;
             }
+    
+            $inventory->save();
+        }catch(\Exception $e){
+            
+            return redirect()->back()->with('error', 'invalid input!');
         }
+
+
+        try{
+            if($request->allFiles('imageFile')){
+                $imageFiles = $request->allFiles('imageFile');
+                $images = $imageFiles['imageFile'];
+                for($i = 0; $i < sizeof($images); $i++){
+                    $imageName = time().'_'.($i+1).'.'.$images[$i]->extension();
+                    $images[$i]->storeAs('inventories', $imageName);
+                    $inventoryImages = new InventoryImages();
+                    $inventoryImages->inventory_id = $inventory->id;
+                    $inventoryImages->filename = $imageName;
+                    $inventoryImages->save();
+                }
+            }
+        }catch(\Exception $e){
+            return response()->json($e, 500);
+        }
+        
+
+      
 
         return redirect('/')->with('success', 'Inventory berhasil ditambahkan');
     }

@@ -32,7 +32,7 @@
             </div>
             <label class="my-2">
                 <h5>Judul Iklan*</h5>
-                <input row="3" type="text" name="nama" class="form-control" required>
+                <input type="text" name="nama" class="form-control" required>
             </label>
             <label for="stok" class="w-25 my-2">
                 <h5>On Hand Stock*</h5>
@@ -42,13 +42,13 @@
                     <button class="btn btn-outline-dark-subtle" type="button" id="button-addon2" onclick="stepUp()">+</button>
                 </div>
             </label>
-            <label class="my-2>
+            <label class="my-2">
                 <h5>Deskripsi</h5>
                 <textarea rows="4" type="text" name="deskripsi" class="form-control mb-3"></textarea>
             </label>
             <label class="my-2">
                 <h5>Lokasi*</h5>
-                <input type="text" name="lokasi" class="form-control mb-3" value="{{$pic_data->cabang}}" disabled>
+                <input type="text" name="lokasi" class="form-control mb-3" value="{{$pic_data->cabang}}" readonly>
             </label>
         </div>
         <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px">

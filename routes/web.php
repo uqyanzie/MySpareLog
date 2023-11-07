@@ -30,6 +30,8 @@ Route::get('/ads', [AdsController::class, 'index'])->middleware('auth');
 Route::get('/inventories/search', [InventoryController::class, 'search'])->name('inventories.search');
 Route::post('/inventories/store', [InventoryController::class, 'store'])->name('inventories.store');
 
+Route::get('/requests', [RequestController::class, 'index']);
+Route::get('/requests/{id}', [RequestController::class, 'myrequest_info']);
 Route::post('/request', [RequestController::class, 'store']);
 
 Route::get('/activity', function () {
