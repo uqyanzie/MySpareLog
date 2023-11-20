@@ -6,7 +6,7 @@
 <div class="pt-5 my-5">
     <div class="checkout">
         <h2 class="text-center">
-            Activity
+            {{$title ?? ''}}
         </h2>
     </div>
 
@@ -14,11 +14,11 @@
         <div class="border rounded-top-4 text-center py-2">
             <h3>Pesanan Keluar</h3>
         </div>  
-        <div class="d-flex flex-column flex-lg-row p-5 justify-content-around border mb-5 gap-5">
+        <div class="d-flex flex-column-reverse flex-lg-row p-5 justify-content-around align-items-center align-items-lg-baseline border mb-5 gap-5">
             <div class="d-flex flex-column gap-4"> 
                 @foreach($requests as $request)
-                <a href="/requests/{{$request->id}}" class="text-decoration-none">
-                    <div class="card shadow @if($request->id == $selected_request->id) bg-info @endif">
+                <a href="/my-requests/{{$request->id}}" class="text-decoration-none">
+                    <div class="card shadow @if($selected_request && $request->id == $selected_request->id) bg-info @endif" style="max-width: 450px">
                         <div class="row g-0">
                             <div class="col-lg-6 col-md-12">
                                 <img src="{{asset('storage/inventories/'.$request->foto_barang)}}" class="w-100 h-100 rounded-start" alt="...">
@@ -41,10 +41,10 @@
                 </a>
                 @endforeach
             </div>
-            <div class="d-flex flex-column align-items-center gap-3">
+            <div class="d-flex flex-column">
                 @if($selected_request)
                     <div class="card shadow">
-                        <div class="card-body d-flex flex-column p-5 gap-3 my-3">
+                        <div class="card-body d-flex flex-column p-5 gap-3">
                             <div class="d-flex w-100 px-3">
                                 <i class="fa-solid fa-bag-shopping fs-1"></i>
                                 <div class="d-flex flex-column w-100 ms-3">

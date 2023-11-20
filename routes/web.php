@@ -30,8 +30,8 @@ Route::get('/ads', [AdsController::class, 'index'])->middleware('auth');
 Route::get('/inventories/search', [InventoryController::class, 'search'])->name('inventories.search');
 Route::post('/inventories/store', [InventoryController::class, 'store'])->name('inventories.store');
 
-Route::get('/requests', [RequestController::class, 'index']);
-Route::get('/requests/{id}', [RequestController::class, 'myrequest_info']);
+Route::get('/my-requests', [RequestController::class, 'index']);
+Route::get('/my-requests/{id}', [RequestController::class, 'myrequest_info']);
 Route::post('/request', [RequestController::class, 'store']);
 
 Route::get('/activity', function () {
@@ -49,4 +49,7 @@ Route::get('admin', [AdminController::class, 'index']);
 Route::get('admin/inventories', [AdminController::class, 'inventories']);
 Route::get('admin/users', [AdminController::class, 'users']);
 
-Route::get('ads/create/{type_id}', [InventoryController::class, 'create']);
+Route::get('ads/create/{type_id}', [InventoryController::class, 'create'])->middleware('auth');
+Route::get('/inbox', function() { 
+    return view("activity.inbox"); 
+});

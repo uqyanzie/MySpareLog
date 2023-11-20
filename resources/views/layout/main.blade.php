@@ -34,13 +34,19 @@
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav d-grid gap-4 fs-2">
+              @auth
               <li class="nav-item px-2">
-                <a class="nav-link text-dark" href="/activity">
+                <a class="nav-link text-dark" href="/my-requests">
                   <i class="fa-solid fa-clock-rotate-left"></i>
                   Activity
                 </a>
               </li>
-              @auth
+              <li class="nav-item px-2">
+                <a class="nav-link text-dark" href="/inbox">
+                  <i class="fa-regular fa-message"></i>
+                    Inbox
+                </a>
+              </li>
               <li class="nav-item px-2">
                 <a class="nav-link text-dark" href="/profile">
                   <i class="fa-regular fa-circle-user"></i>
@@ -55,13 +61,15 @@
                 </a>
               </li>
               @endauth
-              <li class="nav-item">
-                <div class="d-grid gap-2">
-                  <a class="btn btn-primary" href="/ads">
-                    Pasang Iklan <i class="fa-solid fa-plus"></i>
-                  </a>
-                </div>
-              </li>
+              @auth
+                <li class="nav-item">
+                  <div class="d-grid gap-2">
+                    <a class="btn btn-primary" href="/ads">
+                      Pasang Iklan <i class="fa-solid fa-plus"></i>
+                    </a>
+                  </div>
+                </li>
+              @endauth
             </ul>
           </div>
         </div>
@@ -87,13 +95,18 @@
             </div>
         </form>
 
-        <ul class="navbar-nav d-flex flex-row justify-content-around align-items-center w-25 gap-2">
+        <ul class="navbar-nav d-flex flex-row @auth justify-content-around @else justify-content-end @endauth align-items-center w-25 gap-3">
+          @auth  
             <li class="nav-item">
-              <a class="nav-link text-dark" href="/activity">
+              <a class="nav-link text-dark" href="/my-requests">
                 <i class="fa-solid fa-clock-rotate-left fa-2x"></i>
               </a>
             </li>
-            @auth
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/inbox">
+                <i class="fa-regular fa-message fa-2x"></i>
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link text-dark" href="/profile">
                 <i class="fa-regular fa-circle-user fa-2x"></i>
@@ -107,11 +120,13 @@
               </a>
             </li>    
             @endauth
+            @auth
             <li class="nav-item">
               <a class="btn btn-primary rounded-pill" href="/ads">
                 Pasang Iklan <i class="fa-solid fa-plus"></i>
               </a>
             </li>     
+            @endauth
         </ul>
 
       </div>

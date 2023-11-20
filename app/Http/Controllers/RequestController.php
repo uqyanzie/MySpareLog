@@ -30,12 +30,17 @@ class RequestController extends Controller
         $user = Auth::user();
         $requests = RequestModel::join('inventories', 'inventories.id', '=', 'inventory_id')
         ->select('requests.*', 'inventories.pic_id as pic_id', 'inventories.nama as nama_barang', 'inventories.nama_pic as nama_pic', 'inventories.lokasi as lokasi', 'inventories.foto as foto_barang')
+        ->where('requests.requester_id', $user->id)
         ->get();
         $title = "My Requests";
 
         $selected_request = null;
 
         return view('activity.out', compact('user', 'requests', 'title', 'selected_request'));
+    }
+
+    public function showAll(){
+        
     }
 
     public function myrequest_info($id){
