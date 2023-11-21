@@ -28,11 +28,11 @@
                     @csrf
                     <div class="col-12 form-group">
                         <label class="form-label" for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control form-control-lg">
+                        <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Masukkan Email MySpareLog anda">
                     </div>
                     <div class="col-12 form-group">
                         <label class="form-label" for="password">Password</label>
-                        <input type="password" name="password" id="password" class="form-control form-control-lg">
+                        <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Masukkan Password MySpareLog anda">
                     </div>
                     <div class="col-12 form-group">
                         <button type="submit" class="btn btn-primary btn-lg mt-3 w-100">Log In</button>
