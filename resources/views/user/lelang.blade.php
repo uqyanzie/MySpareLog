@@ -29,7 +29,7 @@
                     </a>
                     <div class="collapse" id="collapseExample">
                         <div class="list-group border-0 rounded-0 text-sm-start gap-3">
-                            <a href="/my-inventories" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3 active">
+                            <a href="/my-inventories" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
                                 <h5 class="mb-0">Iklan Saya</h5>
                             </a>
                             <a href="/need-actions" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
@@ -38,7 +38,7 @@
                             <a href="/completed" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
                                 <h5 class="mb-0">Selesai</h5>
                             </a>
-                            <a href="/my-inventories/lelang" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                            <a href="/my-inventories/lelang" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3 active">
                                 <h5 class="mb-0">Lelang</h5>
                             </a>
                             <a href="/my-inventories/junk" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
@@ -56,10 +56,6 @@
             <div class="card border-0 shadow p-4">
                 <div class="d-block mb-3">
                     <h1>{{$title}}</h1>
-                </div>
-                <div class="d-flex gap-2 mb-3">
-                    <a href="{{route('my-inventories.download-excel')}}" class="btn btn-success">Download Excel</a>
-                    <a href="/ads" class="btn btn-secondary">Tambah Iklan Barang</a>
                 </div>
                 <table class="table">
                     <thead>

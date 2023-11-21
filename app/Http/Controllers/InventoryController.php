@@ -106,7 +106,13 @@ class InventoryController extends Controller
             $inventory->stok = $request->input('stok');
             $inventory->deskripsi = $request->input('deskripsi');
             $inventory->lokasi = $request->input('lokasi');
-            $inventory->pic_id = Auth::id();
+            if(auth()->user()->role == 'admin'){
+                $current_session = session()->get("current_session");
+                $inventory->pic_id = $current_session->id;
+            }
+            else{
+                $inventory->pic_id = Auth::id();
+            }
     
             if(sizeOf($request->allFiles('imageFile')) > 0){
                 $images = $request->file('imageFile');

@@ -35,6 +35,22 @@
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="card border-0 shadow p-4">
+                <div class="d-flex gap-2 mb-3">
+                    <a href="{{route('admin.inventories.download-excel')}}" class="btn btn-success">Download Excel</a>
+                    <a href="/admin/create-inventory" class="btn btn-secondary">Tambah Iklan Barang</a>
+                    @if (session('current_session'))
+                        <div class="ms-auto d-flex gap-2">
+                            <div class="rounded-3 bg-warning-subtle p-2 px-4 ms-auto">
+                                <p class="mb-0 fw-semibold">Session Used : {{session('current_session')->username}}</p> 
+                            </div>
+                            <a href="{{route('admin.exit_session')}}" class="btn btn-danger rounded-5">Exit Session</a>
+                        </div>
+                    @else
+                        <div class="rounded-3 bg-warning-subtle p-2 px-4 ms-auto">
+                            <p class="mb-0 fw-semibold">No Session Used</p>
+                        </div>
+                    @endif
+                </div>
                 <table class="table">
                     <thead>
                         <tr class="table-info">

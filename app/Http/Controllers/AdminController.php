@@ -23,11 +23,14 @@ class AdminController extends Controller
         return view('admin.inventoryList', compact('user', 'inventories', 'title'));
     }
 
-    public function users(){
-        $me = User::find(Auth::id());
-        $users = User::get();
-        $title = "Users Data";
+    public function change_session($user_id){
+        $user = User::find($user_id);
+        session(['current_session' => $user]);
+        return redirect()->back();
+    }
 
-        return view("admin.userList", compact('me', 'users', 'title'));
+    public function exit_session(){
+        session()->forget('current_session');
+        return redirect()->back();
     }
 }

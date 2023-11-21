@@ -39,6 +39,11 @@
                     Hallo, {{$user->name}}
                 </h1>
             </div>
+            <div class="card border-0 shadow p-4">
+                <form>
+                    <input type="hidden" value>
+                </form>
+            </div>
         </main>
     </div>
 </div>
