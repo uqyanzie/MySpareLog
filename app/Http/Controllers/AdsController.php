@@ -10,7 +10,16 @@ use Illuminate\Support\Facades\Auth;
 class AdsController extends Controller
 {
     public function index()
-    {
+    {   
+        if(auth()->user()->role == 'admin'){
+            if(session()->has('current_session')){
+                $user = session('current_session');
+            }
+            else{
+                return redirect()->back();
+            }
+        }
+
         $title = "Pasang Iklan Anda";
         return view('inventory.ads', compact('title'));
     }

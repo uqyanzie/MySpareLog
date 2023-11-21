@@ -83,13 +83,12 @@ class InventoryController extends Controller
         $type = Type::find($id);
         $title = "Pasang Iklan Anda";
 
-        $pic_data = Auth::user();
+        $pic_data = Auth::user()->role == 'admin' ? session('current_session') : Auth::user();
 
         return view('inventory.createAds', compact('type', 'title', 'pic_data'));
     }
 
     public function store(Request $request){
-
         try{
             $this->validate($request, [
                 'nama' => 'required',

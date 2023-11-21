@@ -37,7 +37,7 @@
             <div class="card border-0 shadow p-4">
                 <div class="d-flex gap-2 mb-3">
                     <a href="{{route('admin.inventories.download-excel')}}" class="btn btn-success">Download Excel</a>
-                    <a href="/admin/create-inventory" class="btn btn-secondary">Tambah Iklan Barang</a>
+                    <a href="/ads" class="btn btn-secondary">Tambah Iklan Barang</a>
                     @if (session('current_session'))
                         <div class="ms-auto d-flex gap-2">
                             <div class="rounded-3 bg-warning-subtle p-2 px-4 ms-auto">
