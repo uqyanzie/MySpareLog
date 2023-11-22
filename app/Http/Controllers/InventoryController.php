@@ -157,7 +157,75 @@ class InventoryController extends Controller
             return abort(404);
         }
 
-        return view('inventory.edit', compact('inventory'));
+        $title = "Edit Iklan";
+        $type = Type::find($inventory->type_id);
+        $pic_data = Auth::user()->role == 'admin' ? session('current_session') : Auth::user();
+        $inventoryImages = InventoryImages::where('inventory_id', $id)->get();
+
+        return view('inventory.editAds', compact('inventory', 'type', 'pic_data', 'title', 'inventoryImages'));
+    }
+
+    public function update(Request $request, $id){
+        $inventory = Inventory::find($id);
+
+        if(!$inventory){
+            return abort(404);
+        }
+
+        try{
+            $this->validate($request, [
+                'nama' => 'required',
+                'lokasi' => 'required',
+                'stok' => 'required|numeric',
+                'nama_pic' => 'required',
+                'telp_pic' => 'required|numeric',
+            ]);
+            $inventory->nama = $request->input('nama');
+            $inventory->nama_pic = $request->input('nama_pic');
+            $inventory->telp_pic = $request->input('telp_pic');
+            $inventory->type_id = $request->input('type_id');
+            $inventory->stok = $request->input('stok');
+            $inventory->deskripsi = $request->input('deskripsi');
+            $inventory->lokasi = $request->input('lokasi');
+            if(auth()->user()->role == 'admin'){
+                $current_session = session()->get("current_session");
+                $inventory->pic_id = $current_session->id;
+            }
+            else{
+                $inventory->pic_id = Auth::id();
+            }
+    
+            if(sizeOf($request->allFiles('imageFile')) > 0){
+                $images = $request->file('imageFile');
+                $imageName = time().'.'.$images[0]->extension();
+                $images[0]->storeAs('inventories', $imageName);
+                $inventory->foto = $imageName;
+            }
+    
+            $inventory->save();
+        }catch(\Exception $e){
+            
+            return redirect()->back()->with('error', 'invalid input!');
+        }
+
+        try{
+            if($request->allFiles('imageFile')){
+                $imageFiles = $request->allFiles('imageFile');
+                $images = $imageFiles['imageFile'];
+                for($i = 0; $i < sizeof($images); $i++){
+                    $imageName = time().'_'.($i+1).'.'.$images[$i]->extension();
+                    $images[$i]->storeAs('inventories', $imageName);
+                    $inventoryImages = new InventoryImages();
+                    $inventoryImages->inventory_id = $inventory->id;
+                    $inventoryImages->filename = $imageName;
+                    $inventoryImages->save();
+                }
+            }
+        }catch(\Exception $e){
+            return response()->json($e, 500);
+        }
+
+        return redirect('/')->with('success', 'Barang berhasil diperbarui');
     }
 
     public function destroy($id){

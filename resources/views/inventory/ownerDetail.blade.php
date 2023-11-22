@@ -35,12 +35,17 @@
             </button>
         </div>
 
-        <div class="container-sm my-5">
-            <h2 style="font-weight: bold">Tangki Timbun BBM</h2>
-            <p style="margin-top: -5px">Pelabuhan Tanjung Priok, Surabaya</p>
-            <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1">
-                Bekas 
-            </button>
+        <div class="container-sm d-flex my-3 justify-content-between">
+            <div>
+                <h2 style="font-weight: bold">{{$inventory->nama}}</h2>
+                <p style="margin-top: -5px">{{$inventory->lokasi}}</p>
+                <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1 text-capitalize">
+                    {{$inventory->kondisi}} 
+                </button>
+            </div>
+            <div>
+            <a href="/inventory/edit/{{$inventory->id}}" class="btn btn-warning btn-lg rounded-5">Edit Iklan</a>
+            </div>
         </div>
         
         <div class="container-sm border border-1 border-secondary my-5">
@@ -61,8 +66,7 @@
                                 <i class="fa-solid fa-location-dot fs-2"></i>
                                 <div class="d-flex flex-column">
                                     <h5 class="mb-0 text-secondary">Location</h5>
-                                    <p class="mb-0">Tanjung Perak, Surabaya</p>
-                                    <p class="mb-0">Terminal Nilam</p>
+                                    <p class="mb-0">{{$inventory->lokasi}}</p>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +74,8 @@
                             <div class="d-flex gap-3">
                                 <i class="fa-solid fa-border-all fs-2"></i>
                                 <div class="d-flex flex-column">
-                                <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1">
-                                    Bekas 
+                                <button class="btn btn-primary d-iniline-block border border-1 border-dark rounded-5 px-3 py-1 text-capitalize">
+                                    {{$inventory->kondisi}} 
                                 </button>
                                     <p class="mb-0">Layak pakai</p>
                                 </div>
@@ -86,6 +90,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-boxes-stacked fa-2x"></i>
+                                <div class="d-flex flex-column">
+                                    <h5 class="mb-0 text-secondary">Stok</h5>
+                                    <p class="fw-bold mb-0">{{$inventory->stok}}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 p-5 d-flex flex-column gap-5">
@@ -93,7 +106,7 @@
                         Lelang
                     </button>
                     <button class="btn btn-primary rounded-4 fs-2">
-                        Reduce
+                        Remove
                     </button>
                 </div>
             </div>

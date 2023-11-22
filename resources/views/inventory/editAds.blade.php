@@ -8,8 +8,9 @@
         <h5>Kategori</h5>
         <p class="mb-0">{{$type->nama_jenis}}</p>
     </div>
-    <form action="{{ route('inventories.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('inventories.update', $inventory->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PATCH')
         <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px">
             <h5>Detail Iklan</h5>
             <p class="mb-1">Kondisi</p>
@@ -17,13 +18,13 @@
                 <div class="d-flex gap-2 mb-3">
                     <input type="hidden" name="type_id" value="{{$type->id}}">
                     <label>
-                        <input type="radio" name="kondisi" value="baru" checked>
+                        <input type="radio" name="kondisi" value="baru" {{$inventory->kondisi == 'baru' ? 'checked' : ''}}>
                         <div class="btn border rounded-0 border-black">
                             <span>Baru</span>
                         </div>
                     </label>
                     <label>
-                        <input type="radio" name="kondisi" value="bekas">
+                        <input type="radio" name="kondisi" value="bekas" {{$inventory->kondisi == 'bekas' ? 'checked' : ''}}>
                         <div class="btn border rounded-0 border-black">
                             <span>Bekas</span>
                         </div>
@@ -32,29 +33,38 @@
             </div>
             <label class="my-2">
                 <h5>Judul Iklan*</h5>
-                <input type="text" name="nama" class="form-control" required>
+                <input type="text" name="nama" class="form-control" value="{{$inventory->nama}}" required>
             </label>
             <label for="stok" class="w-25 my-2">
                 <h5>On Hand Stock*</h5>
                 <div class="input-group input-group-lg border rounded-3">
                     <button class="btn btn-outline-dark-subtle" type="button" id="button-addon1" onclick="stepDown()">-</button>
-                    <input name="stok" id="stok" type="number" value="0" min="0" class="form-control text-center" required>
+                    <input name="stok" id="stok" type="number" value="{{$inventory->stok}}" min="0" class="form-control text-center" required>
                     <button class="btn btn-outline-dark-subtle" type="button" id="button-addon2" onclick="stepUp()">+</button>
                 </div>
             </label>
             <label class="my-2">
                 <h5>Deskripsi</h5>
-                <textarea rows="4" type="text" name="deskripsi" class="form-control mb-3"></textarea>
+                <textarea rows="4" type="text" name="deskripsi" class="form-control mb-3">{{$inventory->deskripsi}}</textarea>
             </label>
             <label class="my-2">
                 <h5>Lokasi*</h5>
                 <input type="text" name="lokasi" class="form-control mb-3" value="{{$pic_data->cabang}}" readonly>
-
             </label>
         </div>
         <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px">
             <h5>Unggah Foto Barang</h5>
             <div class="row col-12 g-3" id="imagesPreview">
+                @foreach($inventoryImages as $image)
+                <div class="col-3">
+                    <img src="{{ asset('storage/inventories/'.$image->filename) }}" class="img-fluid">
+                    <form action="/inventory-image/delete/{{$image->id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </form> 
+                </div>
+                @endforeach
             </div>
             <div class="row col-3 g-3">
                 <label class="label col-12 m-0" for="images">
@@ -84,7 +94,7 @@
             </div>
         </div>
         <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px;display:flex;justify-content:center">
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 278px;">Pasang Iklan</button>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 278px;">Perbarui Iklan</button>
         </div>
     </form>
 </div>
@@ -180,7 +190,6 @@
                     }
                     $($.parseHTML('<div>')).attr('class', 'col-3').appendTo(imgPreviewPlaceholder);
                     $($.parseHTML('<img>')).attr('src', event.target.result).attr('class', 'img-fluid').appendTo(imgPreviewPlaceholder + ' div:last-child');
-                    $($.parseHTML('<button>')).html("Hapus").attr('class', 'btn btn-danger').appendTo(imgPreviewPlaceholder + ' div:last-child');
                 }
  
                 reader.readAsDataURL(input.files[i]);
@@ -198,8 +207,5 @@
         }
     });
 
-    $('#imagesPreview').on('click', 'button', function() {
-        $(this).parent().remove();        
-    });
   });
 </script>

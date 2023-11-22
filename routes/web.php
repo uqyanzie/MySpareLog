@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\InventoryImagesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdsController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,11 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/ads', [AdsController::class, 'index'])->middleware('auth');
 Route::get('/inventories/search', [InventoryController::class, 'search'])->name('inventories.search');
 Route::post('/inventories/store', [InventoryController::class, 'store'])->name('inventories.store');
+Route::get('/inventory/{id}', [InventoryController::class, 'getInventoryById']);
+Route::get('/inventory/edit/{id}', [InventoryController::class, 'edit'])->middleware('auth');
+Route::delete('/inventory/delete/{id}', [InventoryController::class, 'destroy'])->middleware('auth');
+Route::patch('/inventory/update/{id}', [InventoryController::class, 'update'])->name('inventories.update')->middleware('auth');
+Route::delete('/inventory-image/delete/{id}', [InventoryImagesController::class, 'destroy'])->middleware('auth');
 
 Route::get('/my-requests', [RequestController::class, 'index']);
 Route::get('/my-requests/{id}', [RequestController::class, 'myrequest_info']);
@@ -47,8 +53,6 @@ Route::get('/my-inventories/lelang', [ProfileController::class, 'lelangInventori
 Route::get('/my-inventories/junk', [ProfileController::class, 'junkInventories'])->middleware('auth');
 
 Route::get('/checkout/{id}', [AdsController::class, 'checkout'])->middleware('auth');
-
-Route::get('/inventory/{id}', [InventoryController::class, 'getInventoryById']);
 
 Route::post('/admin/change-session/{id}', [AdminController::class, 'change_session'])->name('admin.change_session');
 Route::get('/admin/exit-session', [AdminController::class, 'exit_session'])->name('admin.exit_session');
