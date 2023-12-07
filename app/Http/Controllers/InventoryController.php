@@ -112,41 +112,34 @@ class InventoryController extends Controller
             else{
                 $inventory->pic_id = Auth::id();
             }
-    
-            if(sizeOf($request->allFiles('imageFile')) > 0){
-                $images = $request->file('imageFile');
-                $imageName = time().'.'.$images[0]->extension();
-                $images[0]->storeAs('inventories', $imageName);
+
+            if($request->file('image1') || $request->file('image2') || $request->file('image3') || $request->file('image4')){
+                $image = $request->file('image1') ;
+                $imageName = time().'_'.'1'.'.'.$image->extension();
                 $inventory->foto = $imageName;
             }
-    
+            
             $inventory->save();
         }catch(\Exception $e){
-            
             return redirect()->back()->with('error', 'invalid input!');
         }
 
-
-        try{
-            if($request->allFiles('imageFile')){
-                $imageFiles = $request->allFiles('imageFile');
-                $images = $imageFiles['imageFile'];
-                for($i = 0; $i < sizeof($images); $i++){
-                    $imageName = time().'_'.($i+1).'.'.$images[$i]->extension();
-                    $images[$i]->storeAs('inventories', $imageName);
+        for($i = 0; $i < 4; $i++){
+            try{
+                if($request->file('image'.($i+1))){
+                    $image1 = $request->file('image'.($i+1));
+                    $imageName = time().'_'.$i.'.'.$image1->extension();
+                    $image1->storeAs('inventories', $imageName);
                     $inventoryImages = new InventoryImages();
                     $inventoryImages->inventory_id = $inventory->id;
                     $inventoryImages->filename = $imageName;
                     $inventoryImages->save();
                 }
+            }catch(\Exception $e){
+                return $e;
             }
-        }catch(\Exception $e){
-            return response()->json($e, 500);
         }
         
-
-      
-
         return redirect('/')->with('success', 'Inventory berhasil ditambahkan');
     }
 
@@ -167,6 +160,7 @@ class InventoryController extends Controller
 
     public function update(Request $request, $id){
         $inventory = Inventory::find($id);
+        $inventoryImages = InventoryImages::where('inventory_id', $id)->get();
 
         if(!$inventory){
             return abort(404);
@@ -180,6 +174,7 @@ class InventoryController extends Controller
                 'nama_pic' => 'required',
                 'telp_pic' => 'required|numeric',
             ]);
+            
             $inventory->nama = $request->input('nama');
             $inventory->nama_pic = $request->input('nama_pic');
             $inventory->telp_pic = $request->input('telp_pic');
@@ -195,48 +190,48 @@ class InventoryController extends Controller
                 $inventory->pic_id = Auth::id();
             }
     
-            if(sizeOf($request->allFiles('imageFile')) > 0){
-                $images = $request->file('imageFile');
-                $imageName = time().'.'.$images[0]->extension();
-                $images[0]->storeAs('inventories', $imageName);
+            if( count($inventoryImages) < 1 || $request->file('image1') || $request->file('image2') || $request->file('image3') || $request->file('image4')){
+                $image = $request->file('image1') ;
+                $imageName = time().'_'.'1'.'.'.$image->extension();
                 $inventory->foto = $imageName;
             }
     
             $inventory->save();
         }catch(\Exception $e){
             
-            return redirect()->back()->with('error', 'invalid input!');
+            return $e;
         }
 
-        try{
-            if($request->allFiles('imageFile')){
-                $imageFiles = $request->allFiles('imageFile');
-                $images = $imageFiles['imageFile'];
-                for($i = 0; $i < sizeof($images); $i++){
-                    $imageName = time().'_'.($i+1).'.'.$images[$i]->extension();
-                    $images[$i]->storeAs('inventories', $imageName);
+        for($i = 0; $i < 4; $i++){
+            try{
+                if($request->file('image'.($i+1))){
+                    $image1 = $request->file('image'.($i+1));
+                    $imageName = time().'_'.$i.'.'.$image1->extension();
+                    $image1->storeAs('inventories', $imageName);
                     $inventoryImages = new InventoryImages();
                     $inventoryImages->inventory_id = $inventory->id;
                     $inventoryImages->filename = $imageName;
                     $inventoryImages->save();
                 }
+            }catch(\Exception $e){
+                return $e;
             }
-        }catch(\Exception $e){
-            return response()->json($e, 500);
         }
 
         return redirect('/')->with('success', 'Barang berhasil diperbarui');
     }
 
-    public function destroy($id){
+    public function remove($id){
         $inventory = Inventory::find($id);
 
         if(!$inventory){
             return abort(404);
         }
 
-        $inventory->delete();
+        $inventory->status = 'dihapus';
 
-        return redirect('/')->with('success', 'Barang berhasil dihapus');
+        $inventory->save();
+
+        return redirect()->back()->with('success', 'Barang berhasil dihapus');
     }
 }

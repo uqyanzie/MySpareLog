@@ -9,7 +9,7 @@
     <div style="margin-top: 100px"></div>
         <div class="text-black p-4 px-5" style="background-color:#2FB6E9;">
             <h2 class="mb-0">
-                Tangki Timbun BBM 
+            {{$inventory->nama}} 
             </h2>
         </div>
         <!-- Information Ends Here -->

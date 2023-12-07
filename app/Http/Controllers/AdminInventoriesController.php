@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportInventory;
 
+
 class AdminInventoriesController extends Controller
 {
+
+    use AuthorizesRequests;
     public function index(){
+        $this->authorize('admin');
         $inventories = Inventory::orderBy('created_at', 'desc')->get();
         $title = "Inventories";
 
@@ -17,6 +22,7 @@ class AdminInventoriesController extends Controller
     }
 
     public function create(){
+        $this->authorize('admin');
         if (session('current_session') == null) {
             return redirect()->route('admin.users');
         }
@@ -25,7 +31,7 @@ class AdminInventoriesController extends Controller
     }
 
     public function store(){
-
+        
     }
 
     public function show(){

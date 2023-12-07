@@ -54,11 +54,40 @@
         </div>
         <div class="row" style="border:1px solid rgba(159, 159, 159, 1);padding:20px">
             <h5>Unggah Foto Barang</h5>
-            <div class="row col-12 g-3" id="imagesPreview">
-            </div>
-            <div class="row col-3 g-3">
-                <label class="label col-12 m-0" for="images">
-                    <input type="file" name="imageFile[]" class="custom-file-input" id="images" accept=".jpg, .jpeg, .png" multiple/>
+            <div class="row justify-content-between">
+                <img class="col-3 d-none" id="imgPreview1" style="max-height: 150px; object-fit: cover; border-radius: 10px;" src="" alt="your image" />
+                <label class="label col-3" id="image1">
+                    <input type="file" name="image1" class="custom-file-input" accept=".jpg, .jpeg, .png"/>
+                    <span class="d-block text-center">
+                        <i class="fa-solid fa-camera fa-5x"></i>
+                        <h5 class="fw-bold">
+                            Tambahkan foto
+                        </h5>
+                    </span>
+                </label>
+                <img class="col-3 d-none" id="imgPreview2" style="max-height: 150px; object-fit: cover; border-radius: 10px;" src="" alt="your image" />
+                <label class="label col-3" id="image2">
+                    <input type="file" name="image2" class="custom-file-input" accept=".jpg, .jpeg, .png"/>
+                    <span class="d-block text-center">
+                        <i class="fa-solid fa-camera fa-5x"></i>
+                        <h5 class="fw-bold">
+                            Tambahkan foto
+                        </h5>
+                    </span>
+                </label>
+                <img class="col-3 d-none" id="imgPreview3" style="max-height: 150px; object-fit: cover; border-radius: 10px;" src="" alt="your image" />
+                <label class="label col-3" id="image3">
+                    <input type="file" name="image3" class="custom-file-input" accept=".jpg, .jpeg, .png"/>
+                    <span class="d-block text-center">
+                        <i class="fa-solid fa-camera fa-5x"></i>
+                        <h5 class="fw-bold">
+                            Tambahkan foto
+                        </h5>
+                    </span>
+                </label>
+                <img class="col-3 d-none" id="imgPreview4" style="max-height: 150px; object-fit: cover; border-radius: 10px;" src="" alt="your image" />
+                <label class="label col-3" id="image4">
+                    <input type="file" name="image4" class="custom-file-input" accept=".jpg, .jpeg, .png"/>
                     <span class="d-block text-center">
                         <i class="fa-solid fa-camera fa-5x"></i>
                         <h5 class="fw-bold">
@@ -102,27 +131,26 @@
     .label input[type="file"] {
         position: absolute;
         top: -1000px;
-      }
-      .label {
+        }
+    .label {
         cursor: pointer;
         border: 2px solid #000; 
-        padding: 5px 15px;
-        margin: 5px;
+        padding: 5px;
         background: #dddddd;
         display: inline-block;
-      }
-      .label:hover {
+    }
+    .label:hover {
         background: #fff;
-      }
-      .label:active {
+    }
+    .label:active {
         background: #9fa1a0;
-      }
-      .label:invalid + span {
+    }
+    .label:invalid + span {
         color: #000000;
-      }
-      .label:valid + span {
+    }
+    .label:valid + span {
         color: #ffffff;
-      }
+    }
     
       input[type="number"] {
         -webkit-appearance: textfield;
@@ -148,58 +176,106 @@
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script >
+<script>
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
     $(function() {
-    // Multiple images preview with JavaScript
-    const previewImages = (input, imgPreviewPlaceholder) => {
- 
-        if (input.files) {
-            var filesAmount = input.files.length;
-
-            if (filesAmount > 4){
-                console.log('Maksimal 4 gambar');
-                $(this).val('');
-                return;
-            }
-
-            let images = input.files;
-
-            localStorage.setItem('images', JSON.stringify(images));
- 
-            for (i = 0; i < filesAmount; i++) {
-                var reader = new FileReader();
-                
-                reader.onload = function(event) {
-                    if(filesAmount < 1){
-                        $($.parseHTML('<div>')).attr('class', 'col-auto').appendTo(imgPreviewPlaceholder);
-                    }
-                    $($.parseHTML('<div>')).attr('class', 'col-3').appendTo(imgPreviewPlaceholder);
-                    $($.parseHTML('<img>')).attr('src', event.target.result).attr('class', 'img-fluid').appendTo(imgPreviewPlaceholder + ' div:last-child');
-                    $($.parseHTML('<button>')).html("Hapus").attr('class', 'btn btn-danger').appendTo(imgPreviewPlaceholder + ' div:last-child');
-                }
- 
-                reader.readAsDataURL(input.files[i]);
-            }
+        $('#image1').change(function(e) {
+            addImage1(e); 
+        });
+        function addImage1(e){
+            var file = e.target.files[0],
+            imageType = /image.*/;
+        
+            if (!file.type.match(imageType))
+            return;
+        
+            var reader = new FileReader();
+            reader.onload = fileOnload;
+            reader.readAsDataURL(file);
         }
- 
-    };
- 
-    $('#images').on('change', function() {
-        if ($('div#imagesPreview').children().length < 4) {
-            previewImages(this, 'div#imagesPreview');
-        } else {
-            console.log('Maksimal 4 gambar');
-            $(this).val('');
-        }
+        
+        function fileOnload(e) {
+            var result=e.target.result;
+            $('#imgPreview1').attr("src",result);
+            $('#imgPreview1').removeClass('d-none');
+            $('#image1').addClass('d-none');
+        }  
     });
 
-    $('#imagesPreview').on('click', 'button', function() {
-        $(this).parent().remove();        
+    $(function() {
+        $('#image2').change(function(e) {
+            addImage2(e); 
+        });
+        function addImage2(e){
+            var file = e.target.files[0],
+            imageType = /image.*/;
+        
+            if (!file.type.match(imageType))
+            return;
+        
+            var reader = new FileReader();
+            reader.onload = fileOnload;
+            reader.readAsDataURL(file);
+        }
+        
+        function fileOnload(e) {
+            var result=e.target.result;
+            $('#imgPreview2').attr("src",result);
+            $('#imgPreview2').removeClass('d-none');
+            $('#image2').addClass('d-none');
+        }    
     });
-  });
+
+    $(function() {
+        $('#image3').change(function(e) {
+            addImage3(e); 
+        });
+        function addImage3(e){
+            var file = e.target.files[0],
+            imageType = /image.*/;
+        
+            if (!file.type.match(imageType))
+            return;
+        
+            var reader = new FileReader();
+            reader.onload = fileOnload;
+            reader.readAsDataURL(file);
+        }
+        
+        function fileOnload(e) {
+            var result=e.target.result;
+            $('#imgPreview3').attr("src",result);
+            $('#imgPreview3').removeClass('d-none');
+            $('#image3').addClass('d-none');
+        }    
+    });
+
+    $(function() {
+        $('#image4').change(function(e) {
+            addImage4(e); 
+        });
+        function addImage4(e){
+            var file = e.target.files[0],
+            imageType = /image.*/;
+        
+            if (!file.type.match(imageType))
+            return;
+        
+            var reader = new FileReader();
+            reader.onload = fileOnload;
+            reader.readAsDataURL(file);
+        }
+        
+        function fileOnload(e) {
+            var result=e.target.result;
+            $('#imgPreview4').attr("src",result);
+            $('#imgPreview4').removeClass('d-none');
+            $('#image4').addClass('d-none');
+        }    
+    });
 </script>

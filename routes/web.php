@@ -23,7 +23,7 @@ use App\Http\Controllers\RequestController;
 |
 */
 
-Route::get('/', [InventoryController::class, 'get8Inventories']);
+Route::get('/', [InventoryController::class, 'get8Inventories'])->name('home');
 Route::get('/all', [InventoryController::class, 'getAllInventories']);
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -33,9 +33,10 @@ Route::get('/ads', [AdsController::class, 'index'])->middleware('auth');
 Route::get('/inventories/search', [InventoryController::class, 'search'])->name('inventories.search');
 Route::post('/inventories/store', [InventoryController::class, 'store'])->name('inventories.store');
 Route::get('/inventory/{id}', [InventoryController::class, 'getInventoryById']);
-Route::get('/inventory/edit/{id}', [InventoryController::class, 'edit'])->middleware('auth');
-Route::delete('/inventory/delete/{id}', [InventoryController::class, 'destroy'])->middleware('auth');
+Route::get('/inventory/edit/{id}', [InventoryController::class, 'edit'])->middleware('auth')->name('inventories.edit');
+Route::patch('/inventory/remove/{id}', [InventoryController::class, 'remove'])->middleware('auth')->name('inventories.remove');
 Route::patch('/inventory/update/{id}', [InventoryController::class, 'update'])->name('inventories.update')->middleware('auth');
+Route::patch('/inventory/lelang/{id}', [InventoryController::class, 'lelang'])->name('inventories.lelang')->middleware('auth');
 Route::delete('/inventory-image/delete/{id}', [InventoryImagesController::class, 'destroy'])->middleware('auth');
 
 Route::get('/my-requests', [RequestController::class, 'index']);

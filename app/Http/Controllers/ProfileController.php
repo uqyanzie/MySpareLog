@@ -24,7 +24,7 @@ class ProfileController extends Controller
         $user = User::find(auth()->user()->id);
         $title = "Barang/Iklan Saya";
 
-        $inventories = Inventory::where('pic_id', '=', $user->id)->get();
+        $inventories = Inventory::where('pic_id', $user->id)->where('status', 'tersedia')->get();
 
         return view('user.inventories', compact('user', 'title', 'inventories'));
     }
@@ -33,7 +33,7 @@ class ProfileController extends Controller
         $user = User::find(auth()->user()->id);
         $title = "Removed";
 
-        $inventories = Inventory::where('pic_id', '=', $user->id)->where('status', '=', 'dihapus')->get();
+        $inventories = Inventory::where('pic_id', $user->id)->where('status', '=', 'dihapus')->get();
 
         return view('user.junk', compact('user', 'title', 'inventories'));
     }
@@ -42,7 +42,7 @@ class ProfileController extends Controller
         $user = User::find(auth()->user()->id);
         $title = "Barang yang dilelang";
 
-        $inventories = Inventory::where('pic_id', '=', $user->id)->where('status', '=', 'lelang')->get();
+        $inventories = Inventory::where('pic_id', $user->id)->where('status', '=', 'lelang')->get();
 
         return view('user.lelang', compact('user', 'title', 'inventories'));
     }

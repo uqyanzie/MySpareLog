@@ -21,6 +21,9 @@
                             <p class="mb-0">{{$user->username}}</p>
                         </div>
                     </div>
+                    <a href="/" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                        <h5 class="mb-0">Kembali ke Beranda</h5>
+                    </a>
                     <a href="/profile" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
                         <h5 class="mb-0">Account</h5>
                     </a>

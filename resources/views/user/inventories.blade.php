@@ -21,6 +21,9 @@
                             <p class="mb-0">{{$user->username}}</p>
                         </div>
                     </div>
+                    <a href="/" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
+                        <h5 class="mb-0">Kembali ke Beranda</h5>
+                    </a>
                     <a href="/profile" class="list-group-item d-inline-block list-group-item-action border-0 rounded-3">
                         <h5 class="mb-0">Account</h5>
                     </a>
@@ -80,9 +83,13 @@
                             <td>{{$inventory->status}}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-center">
-                                    <button class="btn btn-primary rounded-5 px-4">Edit</button>
-                                    <button class="btn btn-outline-primary rounded-5 px-4">View</button>
-                                    <button class="btn btn-danger rounded-5 px-4">Hapus</button>
+                                    <a href="{{route('inventories.edit', $inventory->id)}}" class="btn btn-primary rounded-5 px-4">Edit</a>
+                                    <a href="/inventory/{{$inventory->id}}" class="btn btn-outline-primary rounded-5 px-4">Lihat</a>
+                                    <form action="{{route('inventories.remove', $inventory->id)}}" method="POST" class="mb-0">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button class="btn btn-danger rounded-5 px-4">Hapus</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
